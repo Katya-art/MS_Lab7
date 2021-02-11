@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Lab1.1</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_part1">Part1</string>
+    <string name="title_part2">Part2</string>
 </resources>

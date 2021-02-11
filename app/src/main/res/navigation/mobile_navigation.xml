@@ -12,8 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="ua.kpi.comsys.iv8214.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_part1"
+        android:name="ua.kpi.comsys.iv8214.ui.part1.Part1Fragment"
+        android:label="@string/title_part1"
+        tools:layout="@layout/fragment_part1" />
+
+    <fragment
+        android:id="@+id/navigation_part2"
+        android:name="ua.kpi.comsys.iv8214.ui.part2.Part2Fragment"
+        android:label="@string/title_part2"
+        tools:layout="@layout/fragment_part2" />
 </navigation>

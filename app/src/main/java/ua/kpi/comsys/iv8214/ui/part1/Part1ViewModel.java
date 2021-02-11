@@ -1,16 +1,16 @@
-package ua.kpi.comsys.iv8214.ui.notifications;
+package ua.kpi.comsys.iv8214.ui.part1;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class NotificationsViewModel extends ViewModel {
+public class Part1ViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public NotificationsViewModel() {
+    public Part1ViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is notifications fragment");
+        mText.setValue("This will be the first part of Lab1.2");
     }
 
     public LiveData<String> getText() {

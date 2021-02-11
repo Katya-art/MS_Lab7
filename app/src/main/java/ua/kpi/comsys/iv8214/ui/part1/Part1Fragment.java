@@ -1,4 +1,4 @@
-package ua.kpi.comsys.iv8214.ui.notifications;
+package ua.kpi.comsys.iv8214.ui.part1;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,17 +12,17 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import ua.kpi.comsys.iv8214.R;
 
-public class NotificationsFragment extends Fragment {
+public class Part1Fragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private Part1ViewModel part1ViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
             ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                new ViewModelProvider(this).get(NotificationsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_notifications, container, false);
-        final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        part1ViewModel =
+                new ViewModelProvider(this).get(Part1ViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_part1, container, false);
+        final TextView textView = root.findViewById(R.id.text_part1);
+        part1ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
