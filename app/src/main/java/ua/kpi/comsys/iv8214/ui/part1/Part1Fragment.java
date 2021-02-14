@@ -1,6 +1,8 @@
 package ua.kpi.comsys.iv8214.ui.part1;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,9 +25,11 @@ public class Part1Fragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_part1, container, false);
         final TextView textView = root.findViewById(R.id.text_part1);
         part1ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
+                textView.setMovementMethod(new ScrollingMovementMethod());
             }
         });
         return root;

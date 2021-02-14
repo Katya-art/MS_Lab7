@@ -1,6 +1,7 @@
 package ua.kpi.comsys.iv8214.ui.part2;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class Part2Fragment extends Fragment {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
+                textView.setMovementMethod(new ScrollingMovementMethod());
             }
         });
         return root;

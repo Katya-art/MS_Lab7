@@ -10,7 +10,12 @@ public class Part1ViewModel extends ViewModel {
 
     public Part1ViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This will be the first part of Lab1.2");
+        Part1 part1 = new Part1();
+        mText.setValue("Task1\n" + part1.studentsGroups().toString() +
+                       "\nTask2\n" + part1.studentsPoint() +
+                       "\nTask3\n" + part1.sumPoints() +
+                       "\nTask4\n" + part1.groupAvg() +
+                       "\nTask5\n" + part1.passedPerGroup());
     }
 
     public LiveData<String> getText() {
