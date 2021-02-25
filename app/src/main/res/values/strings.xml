@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Lab1.1</string>
     <string name="title_home">Home</string>
-    <string name="title_part1">Part1</string>
-    <string name="title_part2">Part2</string>
+    <string name="title_drawings">Drawings</string>
+    <string name="title_graphic">Graphic</string>
+    <string name="title_diagram">Diagram</string>
+    <string name="title_activity_drawing">drawing</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="title_activity_paintings">paintings</string>
+    <string name="title_activity_test">Test</string>
 </resources>

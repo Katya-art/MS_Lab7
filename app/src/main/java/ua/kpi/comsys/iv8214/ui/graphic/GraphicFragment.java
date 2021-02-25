@@ -1,7 +1,6 @@
-package ua.kpi.comsys.iv8214.ui.part2;
+package ua.kpi.comsys.iv8214.ui.graphic;
 
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,21 +14,20 @@ import androidx.lifecycle.ViewModelProvider;
 
 import ua.kpi.comsys.iv8214.R;
 
-public class Part2Fragment extends Fragment {
+public class GraphicFragment extends Fragment {
 
-    private Part2ViewModel part2ViewModel;
+    private GraphicViewModel graphicViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        part2ViewModel =
-                new ViewModelProvider(this).get(Part2ViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_part2, container, false);
-        final TextView textView = root.findViewById(R.id.text_part2);
-        part2ViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        graphicViewModel =
+                new ViewModelProvider(this).get(GraphicViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_graphic, container, false);
+        final TextView textView = root.findViewById(R.id.text_graphic);
+        graphicViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
-                textView.setMovementMethod(new ScrollingMovementMethod());
             }
         });
         return root;

@@ -12,14 +12,33 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_part1"
-        android:name="ua.kpi.comsys.iv8214.ui.part1.Part1Fragment"
-        android:label="@string/title_part1"
-        tools:layout="@layout/fragment_part1" />
+        android:id="@+id/navigation_drawings"
+        android:name="ua.kpi.comsys.iv8214.ui.drawings.DrawingsFragment"
+        android:label="@string/title_drawings"
+        tools:layout="@layout/fragment_drawings" />
+
+    <activity
+        android:id="@+id/navigation_paintings"
+        android:name="ua.kpi.comsys.iv8214.Paintings"
+        android:label="@string/title_activity_paintings"
+        tools:layout="@layout/fragment_drawings"/>
 
     <fragment
-        android:id="@+id/navigation_part2"
-        android:name="ua.kpi.comsys.iv8214.ui.part2.Part2Fragment"
-        android:label="@string/title_part2"
-        tools:layout="@layout/fragment_part2" />
+        android:id="@+id/navigation_graphic"
+        android:name="ua.kpi.comsys.iv8214.ui.graphic.GraphicFragment"
+        android:label="@string/title_graphic"
+        tools:layout="@layout/fragment_graphic" />
+
+    <fragment
+        android:id="@+id/navigation_diagram"
+        android:name="ua.kpi.comsys.iv8214.ui.diagram.DiagramFragment"
+        android:label="@string/title_diagram"
+        tools:layout="@layout/fragment_diagram" />
+
+    <activity
+        android:id="@+id/navigation_test"
+        android:name="ua.kpi.comsys.iv8214.Test"
+        android:label="@string/title_activity_test"
+        tools:layout="@layout/activity_test" />
+
 </navigation>
