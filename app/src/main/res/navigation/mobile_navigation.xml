@@ -17,12 +17,6 @@
         android:label="@string/title_drawings"
         tools:layout="@layout/fragment_drawings" />
 
-    <activity
-        android:id="@+id/navigation_paintings"
-        android:name="ua.kpi.comsys.iv8214.Paintings"
-        android:label="@string/title_activity_paintings"
-        tools:layout="@layout/fragment_drawings"/>
-
     <fragment
         android:id="@+id/navigation_graphic"
         android:name="ua.kpi.comsys.iv8214.ui.graphic.GraphicFragment"
@@ -35,10 +29,10 @@
         android:label="@string/title_diagram"
         tools:layout="@layout/fragment_diagram" />
 
-    <activity
-        android:id="@+id/navigation_test"
-        android:name="ua.kpi.comsys.iv8214.Test"
-        android:label="@string/title_activity_test"
-        tools:layout="@layout/activity_test" />
+    <fragment
+        android:id="@+id/navigation_movies"
+        android:name="ua.kpi.comsys.iv8214.ui.movies.MoviesFragment"
+        android:label="@string/title_movies"
+        tools:layout="@layout/fragment_movies" />
 
 </navigation>

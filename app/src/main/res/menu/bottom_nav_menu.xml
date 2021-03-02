@@ -11,4 +11,9 @@
         android:icon="@android:drawable/ic_menu_edit"
         android:title="@string/title_drawings"/>
 
+    <item
+        android:id="@+id/navigation_movies"
+        android:icon="@android:drawable/ic_menu_slideshow"
+        android:title="@string/title_movies"/>
+
 </menu>
