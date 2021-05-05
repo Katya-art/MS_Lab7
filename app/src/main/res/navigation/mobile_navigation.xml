@@ -35,4 +35,10 @@
         android:label="@string/title_movies"
         tools:layout="@layout/fragment_movies" />
 
+    <fragment
+        android:id="@+id/navigation_images"
+        android:name="ua.kpi.comsys.iv8214.ui.images.ImageFragment"
+        android:label="@string/title_images"
+        tools:layout="@layout/fragment_images" />
+
 </navigation>
