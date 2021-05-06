@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
+import com.bumptech.glide.Glide;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -68,11 +70,14 @@ public class MovieArrayAdapter extends ArrayAdapter implements Filterable {
         ImageView moviePoster = (ImageView) view.findViewById(R.id.imageView);
 
         movieMainInfo.setText(moviesFiltered.get(position).mainInfo());
-        int resourceId = context.getResources().getIdentifier(moviesFiltered.get(position).getPoster(),
+
+        Glide.with(context).load(moviesFiltered.get(position).getPoster()).into(moviePoster);
+
+        /*int resourceId = context.getResources().getIdentifier(moviesFiltered.get(position).getPoster(),
                 "drawable", getContext().getPackageName());
         if (resourceId != 0x0) {
             moviePoster.setImageDrawable(context.getResources().getDrawable(resourceId));
-        }
+        }*/
         return view;
     }
 
@@ -139,5 +144,14 @@ public class MovieArrayAdapter extends ArrayAdapter implements Filterable {
         movies.remove(position);
         moviesFiltered.remove(position);
         notifyDataSetChanged();
+    }
+
+    public List<Movie> getMoviesFiltered() {
+        return moviesFiltered;
+    }
+
+    public void clearData() {
+        // clear the data
+        moviesFiltered.clear();
     }
 }
