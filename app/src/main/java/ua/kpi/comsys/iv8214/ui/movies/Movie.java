@@ -23,6 +23,17 @@ public class Movie implements Serializable {
     private String imdbVotes;
     private String production;
 
+    public Movie() {
+    }
+
+    public Movie(String title, String year, String imdbID, String type, String poster) {
+        this.title = title;
+        this.year = year;
+        this.imdbID = imdbID;
+        this.type = type;
+        this.poster = poster;
+    }
+
     public String getTitle() {
         return title;
     }

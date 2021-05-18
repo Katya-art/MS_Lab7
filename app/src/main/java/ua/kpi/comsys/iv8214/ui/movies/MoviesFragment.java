@@ -6,6 +6,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -48,6 +50,7 @@ public class MoviesFragment extends Fragment implements AdapterView.OnItemClickL
     private ProgressBar progressBar;
     private MovieArrayAdapter movieArrayAdapter;
     private Context context;
+    private DatabaseHandler databaseHandler;
 
     private String mSearchQuery;
 
@@ -77,7 +80,7 @@ public class MoviesFragment extends Fragment implements AdapterView.OnItemClickL
                         });
         listView.setOnTouchListener(touchListener);
         listView.setOnItemClickListener(this);
-
+        databaseHandler = new DatabaseHandler(context);
         return root;
     }
 
@@ -110,37 +113,53 @@ public class MoviesFragment extends Fragment implements AdapterView.OnItemClickL
                 return s;
             } catch (IOException e) {
                 Log.e("Error: ", e.getMessage(), e);
+                return "Error" + strings[1];
             }
-            return null;
         }
         //This method runs on UIThread and it will execute when doINBackground is completed
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            JSONObject jsonObject = null;
-            try {
-                //Parent JSON Object. Json object start at { and end at }
-                jsonObject = new JSONObject(s);
-                ArrayList<Movie> movies = new ArrayList<>();
-                //JSON Array of parent JSON object. Json array starts from [ and end at ]
-                JSONArray jsonArray = jsonObject.getJSONArray("Search");
-                //Reading JSON object inside Json array
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    //Reading JSON Object at 'i' th position of JSON Array
-                    JSONObject object = jsonArray.getJSONObject(i);
-                    Movie movie = new Movie();
-                    movie.setTitle(object.getString("Title"));
-                    movie.setYear(object.getString("Year"));
-                    movie.setImdbID(object.getString("imdbID"));
-                    movie.setType(object.getString("Type"));
-                    movie.setPoster(object.getString("Poster"));
-                    movies.add(movie);
+            if (!s.startsWith("Error")) {
+                JSONObject jsonObject = null;
+                try {
+                    //Parent JSON Object. Json object start at { and end at }
+                    jsonObject = new JSONObject(s);
+                    ArrayList<Movie> movies = new ArrayList<>();
+                    //JSON Array of parent JSON object. Json array starts from [ and end at ]
+                    JSONArray jsonArray = jsonObject.getJSONArray("Search");
+                    //Reading JSON object inside Json array
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        //Reading JSON Object at 'i' th position of JSON Array
+                        JSONObject object = jsonArray.getJSONObject(i);
+                        Movie movie = new Movie();
+                        movie.setTitle(object.getString("Title"));
+                        movie.setYear(object.getString("Year"));
+                        movie.setImdbID(object.getString("imdbID"));
+                        movie.setType(object.getString("Type"));
+                        movie.setPoster(object.getString("Poster"));
+                        movies.add(movie);
+                        databaseHandler.addMovie(movie);
+                    }
+                    movieArrayAdapter = new MovieArrayAdapter(context, R.layout.fragment_movie_info, movies);
+                    progressBar.setVisibility(ProgressBar.INVISIBLE);
+                    listView.setAdapter(movieArrayAdapter);
+                    //Movie movie = databaseHandler.getMovie(1);
+                    //System.out.println(movie.mainInfo());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                s = s.replace("Error", "");
+                ArrayList<Movie> movies = databaseHandler.getMovies(s);
+                if (movies.size() == 0) {
+                    Toast toast = Toast.makeText(getContext(), "No matches", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0,0);
+                    toast.show();
                 }
                 movieArrayAdapter = new MovieArrayAdapter(context, R.layout.fragment_movie_info, movies);
                 progressBar.setVisibility(ProgressBar.INVISIBLE);
                 listView.setAdapter(movieArrayAdapter);
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -187,7 +206,8 @@ public class MoviesFragment extends Fragment implements AdapterView.OnItemClickL
                 mSearchQuery = newText;
                 //Executing AsyncTask, passing api as parameter
                 if (newText.length() >= 3) {
-                    new MovieList().execute("http://www.omdbapi.com/?apikey=7e9fe69e&s=" + newText + "&page=1");
+                    new MovieList().execute("http://www.omdbapi.com/?apikey=7e9fe69e&s=" +
+                            newText + "&page=1", newText);
                 } else {
                     try {
                         movieArrayAdapter.clearData();
